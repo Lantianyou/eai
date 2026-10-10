@@ -20,7 +20,8 @@ export const profile: Profile = {
     "Personal homepage of Tianyou Lan — notes on minds, machines, and the craft of software.",
   nav: [
     { text: "GitHub", link: "https://github.com/lantianyou" },
-    { text: "Email", link: "mailto:hi@lantianyou.dev" },
+    { text: "X", link: "https://x.com/dtlantianyou" },
+    { text: "Email", link: "mailto:dtlantianyou@gmail.com" },
   ],
   footerNote: "VuePress · Vite+ · Cloudflare",
 };

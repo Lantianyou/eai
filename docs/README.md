@@ -13,5 +13,5 @@ This page is the whole site — no feeds, no tracking, no dark mode. If you want
 ## Elsewhere
 
 - [GitHub](https://github.com/lantianyou)
-- [X](https://x.com/lantianyou)
-- [Email](mailto:hi@lantianyou.dev)
+- [X](https://x.com/dtlantianyou)
+- [Email](mailto:dtlantianyou@gmail.com)
