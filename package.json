@@ -14,7 +14,7 @@
     "deploy": "pnpm build && wrangler pages deploy docs/.vuepress/dist"
   },
   "devDependencies": {
-    "@types/node": "^24.10.9",
+    "@types/node": "^26.6.4",
     "@vuepress/bundler-vite": "2.0.0-rc.31",
     "typescript": "^7.0.2",
     "vite-plus": "^1.1.0",
