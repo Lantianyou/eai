@@ -16,7 +16,7 @@
 ## 常用命令
 
 ```sh
-pnpm install        # 安装依赖
+pnpm install        # 安装依赖（首次需再执行 pnpm approve-builds --all 放行 esbuild/workerd）
 pnpm dev            # 本地开发 (localhost:8080)
 pnpm build          # 构建到 docs/.vuepress/dist
 pnpm check          # vp: 格式 + lint + 类型
