@@ -1,0 +1,26 @@
+{
+  "name": "eai-homepage",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "clean": "rm -rf docs/.vuepress/dist docs/.vuepress/.temp docs/.vuepress/.cache",
+    "check": "vp check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "typecheck": "tsc -p tsconfig.json",
+    "deploy": "pnpm build && wrangler pages deploy docs/.vuepress/dist"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.9",
+    "@vuepress/bundler-vite": "2.0.0-rc.31",
+    "typescript": "^7.0.2",
+    "vite-plus": "^1.1.0",
+    "vue": "^3.5.40",
+    "vuepress": "2.0.0-rc.31",
+    "wrangler": "^4.149.0"
+  },
+  "packageManager": "pnpm@12.10.1"
+}

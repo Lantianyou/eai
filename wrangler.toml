@@ -1,0 +1,3 @@
+name = "eai-homepage"
+pages_build_output_dir = "docs/.vuepress/dist"
+compatibility_date = "2026-10-10"
