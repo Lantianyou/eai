@@ -1,16 +1,31 @@
 <script setup lang="ts">
-import SiteFooter from "./components/SiteFooter.vue";
-import SiteHeader from "./components/SiteHeader.vue";
+import { profile } from "./options";
+import { isExternal } from "./links";
 </script>
 
 <template>
-  <div class="flex min-h-dvh flex-col p-[clamp(20px,4vw,48px)]">
-    <SiteHeader />
+  <div class="flex min-h-dvh justify-center p-[clamp(20px,4vw,48px)]">
+    <div class="flex w-full max-w-[600px] flex-col">
+      <main class="site-main">
+        <Content />
+      </main>
 
-    <main class="site-main">
-      <Content />
-    </main>
-
-    <SiteFooter />
+      <nav
+        class="flex animate-rise gap-6 pt-5 text-xs tracking-[0.04em] text-muted [animation-delay:0.4s]"
+        aria-label="Elsewhere"
+      >
+        <a
+          v-for="item in profile.nav"
+          :key="item.link"
+          :href="item.link"
+          :target="isExternal(item.link) ? '_blank' : undefined"
+          :rel="isExternal(item.link) ? 'noopener' : undefined"
+          class="transition-colors duration-[250ms] ease-[ease] hover:text-ink"
+        >
+          {{ item.text }}
+          <span v-if="isExternal(item.link)" class="sr-only"> (opens in a new tab)</span>
+        </a>
+      </nav>
+    </div>
   </div>
 </template>

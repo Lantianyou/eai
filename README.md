@@ -1,6 +1,6 @@
 # eai-homepage
 
-极简中的极简的个人主页，风格参考 [ssi.inc](https://ssi.inc/)：纯白底、黑字、一句宣言式大标题、章节自动编号、页脚一行版权。
+极简中的极简的个人主页，风格参考 [ssi.inc](https://ssi.inc/)：纯白底、黑字、窄栏小字、目录式列表，一屏读完不用翻页。
 
 ## 技术栈
 
@@ -27,12 +27,12 @@ pnpm deploy         # 构建并用 wrangler 直接发布到 Cloudflare Pages
 
 ## 改内容
 
-| 想改什么                   | 改哪里                                                           |
-| -------------------------- | ---------------------------------------------------------------- |
-| 大标题、正文、链接列表     | `docs/README.md`（社交链接在 `options.ts` 里还有一份，两处同改） |
-| 名字、导航、页脚、SEO 描述 | `docs/.vuepress/theme/options.ts`                                |
-| 样式（tokens、字体、动效） | `docs/.vuepress/theme/styles.css`（Tailwind `@theme`）           |
-| favicon                    | `docs/.vuepress/public/favicon.svg`                              |
+| 想改什么                     | 改哪里                                                 |
+| ---------------------------- | ------------------------------------------------------ |
+| 首页文案                     | `docs/README.md`                                       |
+| 名字、底部联系链接、SEO 描述 | `docs/.vuepress/theme/options.ts`                      |
+| 样式（tokens、字体、动效）   | `docs/.vuepress/theme/styles.css`（Tailwind `@theme`） |
+| favicon                      | `docs/.vuepress/public/favicon.svg`                    |
 
 ## 部署到 Cloudflare
 

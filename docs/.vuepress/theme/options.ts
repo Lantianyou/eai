@@ -7,7 +7,6 @@ export interface Profile {
   name: string;
   description: string;
   nav: NavLink[];
-  footerNote: string;
 }
 
 /**
@@ -23,5 +22,4 @@ export const profile: Profile = {
     { text: "X", link: "https://x.com/dtlantianyou" },
     { text: "Email", link: "mailto:dtlantianyou@gmail.com" },
   ],
-  footerNote: "VuePress · Vite+ · Cloudflare",
 };
