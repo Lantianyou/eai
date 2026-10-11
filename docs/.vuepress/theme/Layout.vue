@@ -4,7 +4,7 @@ import SiteHeader from "./components/SiteHeader.vue";
 </script>
 
 <template>
-  <div class="site">
+  <div class="flex min-h-dvh flex-col p-[clamp(20px,4vw,48px)]">
     <SiteHeader />
 
     <main class="site-main">

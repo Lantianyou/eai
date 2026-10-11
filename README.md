@@ -9,7 +9,8 @@
 | [VuePress 2](https://v2.vuepress.vuejs.org/) (rc.31) | 静态站点生成，自带极简自定义主题（`docs/.vuepress/theme/`） |
 | Vite 8 / Rolldown                                    | VuePress bundler 内核（`@vuepress/bundler-vite` 自带）      |
 | [TypeScript 7](https://www.typescriptlang.org/)      | 原生编译器，负责 `.ts` 类型检查（`pnpm typecheck`）         |
-| [Vite+](https://viteplus.dev/)                       | `vp lint` / `vp fmt`（Oxlint + Oxfmt），统一工具链          |
+| [Vite+](https://viteplus.dev/)                       | `vp check`（Oxlint + Oxfmt + 类型检查），统一工具链         |
+| [Tailwind CSS 4](https://tailwindcss.com/)           | 样式：组件用工具类，tokens 与 markdown 样式在 `styles.css`  |
 | [prek](https://github.com/j178/prek)                 | Git hooks（格式化 + lint + 基础检查）                       |
 | [Cloudflare Pages](https://pages.cloudflare.com/)    | 部署（wrangler + GitHub Actions）                           |
 
@@ -26,12 +27,12 @@ pnpm deploy         # 构建并用 wrangler 直接发布到 Cloudflare Pages
 
 ## 改内容
 
-| 想改什么                   | 改哪里                                         |
-| -------------------------- | ---------------------------------------------- |
-| 大标题、正文、链接列表     | `docs/README.md`                               |
-| 名字、导航、页脚、SEO 描述 | `docs/.vuepress/theme/options.ts`              |
-| 样式（字体、间距、动效）   | `docs/.vuepress/theme/Layout.vue` 的 `<style>` |
-| favicon                    | `docs/.vuepress/public/favicon.svg`            |
+| 想改什么                   | 改哪里                                                           |
+| -------------------------- | ---------------------------------------------------------------- |
+| 大标题、正文、链接列表     | `docs/README.md`（社交链接在 `options.ts` 里还有一份，两处同改） |
+| 名字、导航、页脚、SEO 描述 | `docs/.vuepress/theme/options.ts`                                |
+| 样式（tokens、字体、动效） | `docs/.vuepress/theme/styles.css`（Tailwind `@theme`）           |
+| favicon                    | `docs/.vuepress/public/favicon.svg`                              |
 
 ## 部署到 Cloudflare
 
