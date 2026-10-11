@@ -32,7 +32,7 @@ const dates = computed(() => {
       </main>
 
       <nav
-        class="flex animate-rise gap-6 pt-5 text-xs tracking-[0.04em] text-muted [animation-delay:0.4s]"
+        class="rise-in flex gap-6 pt-5 text-xs tracking-[0.04em] text-muted [transition-delay:0.4s]"
         aria-label="Elsewhere"
       >
         <a
