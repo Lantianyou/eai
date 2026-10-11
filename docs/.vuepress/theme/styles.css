@@ -84,7 +84,7 @@
   }
 
   /* first paragraph = tagline under the h1 */
-  .site-main > p:first-of-type {
+  .site-main.is-home > div > p:first-of-type {
     @apply text-[15px] leading-[1.6] text-muted mb-[clamp(24px,6vh,48px)];
   }
 
@@ -109,6 +109,20 @@
     @apply text-[15px] leading-[1.7] text-body mb-[1em];
   }
 
+  .site-main .article-meta {
+    @apply mt-8 border-t border-hairline pt-4 text-xs text-muted;
+  }
+
+  .site-main:not(.is-home) h2 {
+    @apply mt-8 mb-3 block text-base font-semibold tracking-normal text-ink normal-case;
+    counter-increment: none;
+  }
+
+  .site-main:not(.is-home) h2::before,
+  .site-main:not(.is-home) h2::after {
+    content: none;
+  }
+
   .site-main strong {
     @apply font-semibold text-ink;
   }
@@ -126,19 +140,19 @@
   }
 
   /* homepage directory: a bare list of links, no heading, no bullets */
-  .site-main.is-home > ul {
+  .site-main.is-home > div > ul {
     @apply list-none;
   }
 
-  .site-main.is-home > ul > li {
+  .site-main.is-home > div > ul > li {
     @apply mb-2 text-[15px] leading-[1.7] text-body;
   }
 
-  .site-main.is-home > ul > li::marker {
+  .site-main.is-home > div > ul > li::marker {
     content: "";
   }
 
-  .site-main.is-home > ul > li a {
+  .site-main.is-home > div > ul > li a {
     @apply text-ink;
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
@@ -147,7 +161,7 @@
     transition: background-size 0.3s ease;
   }
 
-  .site-main.is-home > ul > li a:hover {
+  .site-main.is-home > div > ul > li a:hover {
     background-size: 100% 1px;
   }
 

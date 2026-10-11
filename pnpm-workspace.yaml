@@ -1,3 +1,8 @@
 allowBuilds:
   esbuild: true
   workerd: true
+overrides:
+  "@vuepress/helper": 2.0.0-rc.31
+peerDependencyRules:
+  allowedVersions:
+    vuepress: 2.0.0-rc.31
