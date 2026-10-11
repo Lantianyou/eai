@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { usePageData } from "vuepress/client";
+
 import { profile } from "./options";
 import { isExternal } from "./links";
+
+const page = usePageData();
 </script>
 
 <template>
   <div class="flex min-h-dvh justify-center p-[clamp(20px,4vw,48px)]">
     <div class="flex w-full max-w-[600px] flex-col">
-      <main class="site-main">
+      <main class="site-main" :class="{ 'is-home': page.path === '/' }">
         <Content />
       </main>
 

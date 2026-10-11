@@ -124,6 +124,58 @@
   .site-main p a:hover {
     background-size: 100% 1px;
   }
+
+  /* homepage directory: a bare list of links, no heading, no bullets */
+  .site-main.is-home > ul {
+    @apply list-none;
+  }
+
+  .site-main.is-home > ul > li {
+    @apply mb-2 text-[15px] leading-[1.7] text-body;
+  }
+
+  .site-main.is-home > ul > li::marker {
+    content: "";
+  }
+
+  .site-main.is-home > ul > li a {
+    @apply text-ink;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+  }
+
+  .site-main.is-home > ul > li a:hover {
+    background-size: 100% 1px;
+  }
+
+  /* note pages: keep plain list and heading typography */
+  .site-main h3 {
+    @apply mt-6 mb-2 text-base font-semibold text-ink;
+  }
+
+  .site-main h4 {
+    @apply mt-4 mb-1.5 text-[15px] font-semibold text-ink;
+  }
+
+  .site-main ul {
+    @apply mb-[1em] list-disc pl-5 text-[15px] leading-[1.7] text-body;
+  }
+
+  .site-main ol {
+    @apply mb-[1em] list-decimal pl-5 text-[15px] leading-[1.7] text-body;
+  }
+
+  .site-main li {
+    @apply mb-0.5;
+  }
+
+  .site-main li a,
+  .site-main ol a {
+    @apply text-ink underline decoration-hairline underline-offset-4 transition-colors duration-[250ms] ease-[ease] hover:decoration-ink;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
