@@ -215,6 +215,10 @@
     @apply text-ink;
   }
 
+  .site-main.is-article .header-anchor {
+    display: none;
+  }
+
   .site-main.is-article ul,
   .site-main.is-article ol {
     @apply mb-4 pl-8;
