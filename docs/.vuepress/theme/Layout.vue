@@ -18,7 +18,13 @@ const dates = computed(() => {
 <template>
   <div class="flex min-h-dvh justify-center p-[clamp(20px,4vw,48px)]">
     <div class="flex w-full max-w-[600px] flex-col">
-      <main class="site-main" :class="{ 'is-home': page.path === '/' }">
+      <main
+        class="site-main"
+        :class="{
+          'is-home': page.path === '/',
+          'is-article': page.path !== '/' && page.path !== '/about/',
+        }"
+      >
         <Content />
         <p v-if="page.path !== '/'" class="article-meta">
           <RouteLink to="/" rel="author">{{ profile.name }}</RouteLink>

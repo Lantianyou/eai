@@ -172,6 +172,74 @@
   .site-main ol a {
     @apply text-ink underline decoration-hairline underline-offset-4 transition-colors duration-[250ms] ease-[ease] hover:decoration-ink;
   }
+
+  /* GitHub-style Markdown treatment for article pages. */
+  .site-main.is-article {
+    @apply max-w-[760px] text-[16px] leading-[1.5];
+  }
+
+  .site-main.is-article h1 {
+    @apply border-b border-hairline pb-3 text-[32px] leading-[1.25] tracking-[-0.02em] font-semibold mb-6;
+  }
+
+  .site-main.is-article h2 {
+    @apply mt-6 mb-4 border-b border-hairline pb-2 text-[24px] leading-[1.25] font-semibold;
+  }
+
+  .site-main.is-article h3 {
+    @apply mt-6 mb-4 text-[20px] leading-[1.25] font-semibold;
+  }
+
+  .site-main.is-article h4 {
+    @apply mt-6 mb-4 text-[16px] leading-[1.25] font-semibold;
+  }
+
+  .site-main.is-article p,
+  .site-main.is-article li {
+    @apply text-[16px] leading-[1.5] text-body;
+  }
+
+  .site-main.is-article p {
+    @apply mb-4;
+  }
+
+  .site-main.is-article a {
+    @apply text-[#0969da] underline decoration-transparent underline-offset-2 transition-colors hover:text-[#0550ae] hover:decoration-current;
+    background-image: none;
+  }
+
+  .site-main.is-article ul,
+  .site-main.is-article ol {
+    @apply mb-4 pl-8;
+  }
+
+  .site-main.is-article li {
+    @apply mb-1;
+  }
+
+  .site-main.is-article blockquote {
+    @apply mb-4 border-l-4 border-hairline pl-4 text-muted;
+  }
+
+  .site-main.is-article code {
+    @apply rounded bg-[#eff1f3] px-1.5 py-0.5 font-mono text-[85%] text-ink;
+  }
+
+  .site-main.is-article pre {
+    @apply mb-4 overflow-x-auto rounded-md bg-[#f6f8fa] p-4;
+  }
+
+  .site-main.is-article pre code {
+    @apply bg-transparent p-0 text-[85%];
+  }
+
+  .site-main.is-article img {
+    @apply my-6 max-w-full rounded-md border border-hairline;
+  }
+
+  .site-main.is-article hr {
+    @apply my-6 border-0 border-t border-hairline;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
