@@ -215,8 +215,12 @@
     @apply text-ink;
   }
 
+  /* VuePress wraps the whole heading text in .header-anchor;
+     neutralize the link instead of hiding it (display:none would
+     hide the heading itself) */
   .site-main.is-article .header-anchor {
-    display: none;
+    @apply text-inherit no-underline pointer-events-none;
+    background-image: none;
   }
 
   .site-main.is-article ul,
