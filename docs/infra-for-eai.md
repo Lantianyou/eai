@@ -4,69 +4,6 @@ description: 具身智能 data infra 的目标与效率指标，讨论数据采�
 date: "2026-10-13"
 updated: "2026-10-13"
 permalink: /infra-for-eai
-head:
-  - - link
-    - rel: canonical
-      href: https://lantianyou.com/infra-for-eai
-  - - meta
-    - name: author
-      content: 兰天游
-  - - meta
-    - property: og:site_name
-      content: 兰天游 | Tianyou Lan
-  - - meta
-    - property: og:locale
-      content: zh_CN
-  - - meta
-    - property: og:type
-      content: article
-  - - meta
-    - property: og:title
-      content: 具身智能基础设施：infra for EAI | 兰天游
-  - - meta
-    - property: og:description
-      content: 具身智能 data infra 的目标与效率指标，讨论数据采集工具、数据管线、数据库、算力存储分配和开发者体验如何支持研发迭代。
-  - - meta
-    - property: og:url
-      content: https://lantianyou.com/infra-for-eai
-  - - meta
-    - property: og:image
-      content: https://lantianyou.com/social-card.png
-  - - meta
-    - property: og:image:width
-      content: "1200"
-  - - meta
-    - property: og:image:height
-      content: "630"
-  - - meta
-    - property: og:image:alt
-      content: 兰天游 · Tianyou Lan · lantianyou.com
-  - - meta
-    - property: article:author
-      content: https://lantianyou.com/
-  - - meta
-    - property: article:published_time
-      content: "2026-10-13"
-  - - meta
-    - property: article:modified_time
-      content: "2026-10-13"
-  - - meta
-    - name: twitter:card
-      content: summary_large_image
-  - - meta
-    - name: twitter:title
-      content: 具身智能基础设施：infra for EAI | 兰天游
-  - - meta
-    - name: twitter:description
-      content: 具身智能 data infra 的目标与效率指标，讨论数据采集工具、数据管线、数据库、算力存储分配和开发者体验如何支持研发迭代。
-  - - meta
-    - name: twitter:image
-      content: https://lantianyou.com/social-card.png
-  - - script
-    - type: application/ld+json
-      id: page-schema
-    - |
-      {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://lantianyou.com/#person","name":"兰天游","alternateName":"Tianyou Lan","url":"https://lantianyou.com/","sameAs":["https://github.com/lantianyou","https://x.com/dtlantianyou"]},{"@type":"WebSite","@id":"https://lantianyou.com/#website","url":"https://lantianyou.com/","name":"兰天游 | Tianyou Lan","inLanguage":"zh-CN","publisher":{"@id":"https://lantianyou.com/#person"}},{"@type":"BlogPosting","@id":"https://lantianyou.com/infra-for-eai#article","url":"https://lantianyou.com/infra-for-eai","headline":"具身智能基础设施：infra for EAI","description":"具身智能 data infra 的目标与效率指标，讨论数据采集工具、数据管线、数据库、算力存储分配和开发者体验如何支持研发迭代。","image":"https://lantianyou.com/social-card.png","inLanguage":"zh-CN","author":{"@id":"https://lantianyou.com/#person"},"publisher":{"@id":"https://lantianyou.com/#person"},"datePublished":"2026-10-13","dateModified":"2026-10-13","mainEntityOfPage":"https://lantianyou.com/infra-for-eai","isPartOf":{"@id":"https://lantianyou.com/#website"}}]}
 ---
 
 # 具身智能基础设施：infra for EAI
@@ -110,12 +47,16 @@ data pipeline 分为如下几个部分：
 
 ### 数据库：single source of truth
 
-有一个中心化的具身智能数据库的好处就在于，就是时刻都有一个 single source of truth 来去查找和筛选数据， 从结果而非过程声明式得管理数据的各种状态。
+有一个中心化的具身智能数据库的好处就在于，就是时刻都有一个 single source of truth 来去查找和筛选数据， 通过声明式得管理数据的各种状态，只需要按结果而非过程得理解，使用调度数据。数据库的原子是 `.rrd` 文件，可以高效得存储时间对齐的，跨模态的数据。比如将高频低码流的 IMU 数据和视频数据以 chunk 得形式存储在一起，可以支持 PB 级的 scale 和 byte 级的流式读取。
+![具身智能数据库视图示意](/images/infra-for-eai-database.jpg)
 
+- Dataset View：一组 Rerun recording，每个 recording 通常是一个 `.rrd` 文件，对应一个 segment，每个 segment 代表一次语义完整的任务。
+- Table View ：单独选取出某些模态的内容，以 Arrow 的形式返回语言无关，高效分析 ready 的数据。
+  lakefs 可以作为带版本的中心数据仓库，每次数据的使用通过 Tag ID 来关联到背后的分支，该分支 merge 的 status 以及对应的元数据。lakefs 可以作为版本管理xi't
 - 主要参考的产品设计：https://rerun.io/hub, https://lakefs.io/ 还有 https://www.lancedb.com/
 - 性能和原理分析：
   - https://rerun.io/blog/data-layer-for-robot-learning
 
 ### 算力存储分配模型
 
-https://allenai.org/blog/impactful-scheduling
+可以参考：https://allenai.org/blog/impactful-scheduling
