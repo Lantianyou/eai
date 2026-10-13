@@ -61,4 +61,4 @@ head:
 
 我是兰天游（Tianyou Lan），这里记录我关于具身智能数据基础设施与软件工程的思考。
 
-- [具身智能 infra 效率指标：metrics for Embodied AI infra](/metrics-for-embodied-ai-infra)
+- [具身智能基础设施：infra for EAI](/infra-for-eai)
