@@ -52,7 +52,7 @@ data pipeline 分为如下几个部分：
 
 - Dataset View：一组 Rerun recording，每个 recording 通常是一个 `.rrd` 文件，对应一个 segment，每个 segment 代表一次语义完整的任务。
 - Table View ：单独选取出某些模态的内容，以 Arrow 的形式返回语言无关，高效分析 ready 的数据。
-  lakefs 可以作为带版本的中心数据仓库，每次数据的使用通过 Tag ID 来关联到背后的分支，该分支 merge 的 status 以及对应的元数据。lakefs 可以作为版本管理xi't
+  lakefs 可以作为带版本的中心数据仓库，每次数据的使用通过 Tag ID 来关联到背后的分支，该分支 merge 的 status 以及对应的元数据。lakefs 可以作为 git 同语义的版本管理系统，提供最省空间的存储管理，支撑灵活的 data curation 。
 - 主要参考的产品设计：https://rerun.io/hub, https://lakefs.io/ 还有 https://www.lancedb.com/
 - 性能和原理分析：
   - https://rerun.io/blog/data-layer-for-robot-learning
