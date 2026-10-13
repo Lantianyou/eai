@@ -208,6 +208,13 @@
     background-image: none;
   }
 
+  .site-main.is-article h1,
+  .site-main.is-article h2,
+  .site-main.is-article h3,
+  .site-main.is-article h4 {
+    @apply text-ink;
+  }
+
   .site-main.is-article ul,
   .site-main.is-article ol {
     @apply mb-4 pl-8;

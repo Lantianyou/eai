@@ -32,10 +32,10 @@ data pipeline 分为如下几个部分：
 
 #### ingest：capture app/kit
 
-- https://github.com/dora-rs/dora
+- [Dora 项目主页](https://github.com/dora-rs/dora)
 - dora 是一个 Rust 框架，每个传感器只要声明式得接入，可以享受到比 ROS 更优的性能以及零拷贝数据传输，相比于 ROS 只能用在 ubuntu 系统上，dora 还有更好的兼容性。使用特殊指令集和系统的物联网设备盒子以及手机都可以更容易接入
 - 性能关乎数采 Space （电脑/盒子）的性能，成本和散热还有稳定性，所以采集软件使用 Dora 会可以提升数采员的效率
-- 在自采数据不 ready 的状态时，或者说是希望在非自采数据做评测时，可以在 https://datasets.gurasees.com/ 使用公开/开源数据集
+- 在自采数据不 ready 的状态时，或者说是希望在非自采数据做评测时，可以在[公开数据集](https://datasets.gurasees.com/)使用公开/开源数据集
 
 #### 标注/处理：ray 和 prefect for 标注模型集成
 
@@ -53,10 +53,10 @@ data pipeline 分为如下几个部分：
 - Dataset View：一组 Rerun recording，每个 recording 通常是一个 `.rrd` 文件，对应一个 segment，每个 segment 代表一次语义完整的任务。
 - Table View ：单独选取出某些模态的内容，以 Arrow 的形式返回语言无关，高效分析 ready 的数据。
   lakefs 可以作为带版本的中心数据仓库，每次数据的使用通过 Tag ID 来关联到背后的分支，该分支 merge 的 status 以及对应的元数据。lakefs 可以作为 git 同语义的版本管理系统，提供最省空间的存储管理，支撑灵活的 data curation 。
-- 主要参考的产品设计：https://rerun.io/hub, https://lakefs.io/ 还有 https://www.lancedb.com/
+- 主要参考的产品设计：[Rerun Hub](https://rerun.io/hub)、[LakeFS](https://lakefs.io/)还有 [LanceDB](https://www.lancedb.com/)。
 - 性能和原理分析：
-  - https://rerun.io/blog/data-layer-for-robot-learning
+  - [Rerun 数据层设计文章](https://rerun.io/blog/data-layer-for-robot-learning)
 
 ### 算力存储分配模型
 
-可以参考：https://allenai.org/blog/impactful-scheduling
+可以参考 [AI2 的算力调度文章](https://allenai.org/blog/impactful-scheduling)。
