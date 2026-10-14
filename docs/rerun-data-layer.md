@@ -34,7 +34,7 @@ Rerun 最为人所知的是多模态时序数据的可视化。而在过去一�
 
 ## 机器人学习需要一个为物理数据而生的数据层
 
-正如[《机器人学习的数据层税》](/blog/data-layer-tax)（英文原文：[The Data Layer Tax for Robot Learning](https://rerun.io/blog/data-layer-tax)）一文所述，拖慢物理 AI 进展的大量摩擦，来自强迫物理数据穿过为传统软件和分析负载设计的基础设施。真正需要的是为**多速率、多模态**数据构建的数据层，它能支撑改进机器人智能所需的全部工作：采集、训练、部署，一个不缺。
+正如[《机器人学习的数据层税》](/data-layer-tax)（英文原文：[The Data Layer Tax for Robot Learning](https://rerun.io/blog/data-layer-tax)）一文所述，拖慢物理 AI 进展的大量摩擦，来自强迫物理数据穿过为传统软件和分析负载设计的基础设施。真正需要的是为**多速率、多模态**数据构建的数据层，它能支撑改进机器人智能所需的全部工作：采集、训练、部署，一个不缺。
 
 ### Coding agent 意味着用户必须完全掌控计算层和应用层
 

@@ -62,4 +62,5 @@ head:
 - [具身智能基础设施：infra for EAI](/infra-for-eai)
 - [Foundary](/real-moat-is-foundry)
 - [机器人学习的新数据层（译文）](/rerun-data-layer)
+- [机器人学习的数据层税（译文）](/data-layer-tax)
 - [Humanity's Last Machine：人形机器人硬件深度解析（译文）](/humanitys-last-machine)
