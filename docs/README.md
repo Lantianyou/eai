@@ -59,7 +59,7 @@ head:
 
 # 兰天游
 
-- [Physical Intelligence 的模型 API：具身行业分工的第一步](/pi-api)
+- [API for eai](/api-for-eai)
 - [具身智能基础设施：infra for EAI](/infra-for-eai)
 - [Foundary](/real-moat-is-foundry)
 - [机器人学习的新数据层（译文）](/rerun-data-layer)
