@@ -33,7 +33,7 @@ const dates = computed(() => {
         class="site-main"
         :class="{
           'is-home': route.path === '/',
-          'is-article': route.path !== '/' && route.path !== '/about/',
+          'is-article vp-doc': route.path !== '/' && route.path !== '/about/',
         }"
       >
         <Content />
