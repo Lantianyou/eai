@@ -244,6 +244,17 @@
     @apply mb-4 overflow-x-auto rounded-md bg-[#f6f8fa] p-4;
   }
 
+  /* shiki inlines background-color:#fff on <pre>; keep the gray block */
+  .site-main.is-article pre.shiki {
+    background-color: #f6f8fa !important;
+  }
+
+  /* shiki sets tabindex="0" for keyboard scrolling; drop the mouse-click
+     focus ring but keep it for keyboard users */
+  .site-main.is-article pre.shiki:focus:not(:focus-visible) {
+    outline: none;
+  }
+
   .site-main.is-article pre code {
     @apply bg-transparent p-0 text-[85%];
   }

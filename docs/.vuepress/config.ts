@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { viteBundler } from "@vuepress/bundler-vite";
 import { sitemapPlugin } from "@vuepress/plugin-sitemap";
+import { shikiPlugin } from "@vuepress/plugin-shiki";
 import { defineUserConfig } from "vuepress";
 
 import minimalTheme from "./theme";
@@ -19,6 +20,9 @@ export default defineUserConfig({
       hostname: profile.url,
       excludePaths: ["/404.html"],
       changefreq: "monthly",
+    }),
+    shikiPlugin({
+      theme: "github-light",
     }),
   ],
   bundler: viteBundler({
