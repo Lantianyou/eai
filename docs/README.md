@@ -60,3 +60,4 @@ head:
 # 兰天游
 
 - [具身智能基础设施：infra for EAI](/infra-for-eai)
+- [Foundary](/real-moat-is-foundry)
