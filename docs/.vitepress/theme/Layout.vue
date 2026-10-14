@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { RouteLink, usePageData } from "vuepress/client";
+import { useData, useRoute } from "vitepress";
 
 import { profile } from "./options";
 import { isExternal } from "./links";
 
-const page = usePageData();
+const { page } = useData();
+const route = useRoute();
 const dates = computed(() => {
   const { date, updated } = page.value.frontmatter;
   return {
@@ -20,17 +21,24 @@ const dates = computed(() => {
     class="flex min-h-dvh justify-center p-[clamp(20px,4vw,48px)]"
     :class="{ 'resume-layout': page.path === '/resume/' }"
   >
-    <div class="flex w-full max-w-[600px] flex-col">
+    <div
+      class="flex w-full flex-col"
+      :class="
+        route.path !== '/' && route.path !== '/about/' && route.path !== '/resume/'
+          ? 'max-w-[760px]'
+          : 'max-w-[600px]'
+      "
+    >
       <main
         class="site-main"
         :class="{
-          'is-home': page.path === '/',
-          'is-article': page.path !== '/' && page.path !== '/about/',
+          'is-home': route.path === '/',
+          'is-article': route.path !== '/' && route.path !== '/about/',
         }"
       >
         <Content />
-        <p v-if="page.path !== '/' && page.path !== '/resume/'" class="article-meta">
-          <RouteLink to="/" rel="author">{{ profile.name }}</RouteLink>
+        <p v-if="route.path !== '/' && route.path !== '/resume/'" class="article-meta">
+          <a href="/" rel="author">{{ profile.name }}</a>
           <template v-if="dates.published">
             · 发布于 <time :datetime="dates.published">{{ dates.published.slice(0, 10) }}</time>
           </template>
@@ -41,7 +49,7 @@ const dates = computed(() => {
       </main>
 
       <nav
-        v-if="page.path !== '/resume/'"
+        v-if="route.path !== '/resume/'"
         class="rise-in flex gap-6 pt-5 text-xs tracking-[0.04em] text-muted [transition-delay:0.4s]"
         aria-label="Elsewhere"
       >

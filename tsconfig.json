@@ -10,11 +10,11 @@
     "skipLibCheck": true,
     "isolatedModules": true
   },
-  "include": ["docs/.vuepress/**/*.ts"],
+  "include": ["docs/.vitepress/**/*.ts"],
   "exclude": [
     "node_modules",
-    "docs/.vuepress/dist",
-    "docs/.vuepress/.temp",
-    "docs/.vuepress/.cache"
+    "docs/.vitepress/dist",
+    "docs/.vitepress/.temp",
+    "docs/.vitepress/.cache"
   ]
 }

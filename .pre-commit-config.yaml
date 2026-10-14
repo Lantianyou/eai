@@ -21,7 +21,7 @@ repos:
     hooks:
       - id: images-webp
         name: generate WebP images
-        entry: sh -c 'pnpm images:webp && git add -A docs/.vuepress/public/images'
+        entry: sh -c 'pnpm images:webp && git add -A docs/public/images'
         language: system
         pass_filenames: false
       - id: oxfmt

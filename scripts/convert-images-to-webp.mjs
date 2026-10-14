@@ -2,7 +2,7 @@ import { readdir } from "node:fs/promises";
 import { join, parse } from "node:path";
 import { spawn } from "node:child_process";
 
-const root = new URL("../docs/.vuepress/public/images/", import.meta.url);
+const root = new URL("../docs/public/images/", import.meta.url);
 const sourceExtensions = new Set([".jpg", ".jpeg", ".png"]);
 
 async function walk(directory) {

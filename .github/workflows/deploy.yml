@@ -37,4 +37,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy docs/.vuepress/dist --project-name=eai-homepage --branch=main
+          command: pages deploy docs/.vitepress/dist --project-name=eai-homepage --branch=main

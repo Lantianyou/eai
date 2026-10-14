@@ -71,6 +71,11 @@
     @apply text-[22px] leading-[1.3] tracking-[-0.01em] font-semibold text-balance mb-3;
   }
 
+  /* the homepage opens with the directory right under the wordmark */
+  .site-main.is-home h1 {
+    @apply mb-6;
+  }
+
   /* first paragraph = tagline under the h1 */
   .site-main.is-home > div > p:first-of-type {
     @apply text-[15px] leading-[1.6] text-muted mb-[clamp(24px,6vh,48px)];
@@ -115,9 +120,8 @@
     @apply font-semibold text-ink;
   }
 
-  /* growing underline on hover, shared by article links and homepage directory */
-  .site-main p a,
-  .site-main.is-home > div > ul > li a {
+  /* growing underline on hover for paragraph links */
+  .site-main p a {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
     background-position: 0 100%;
@@ -125,26 +129,69 @@
     transition: background-size 0.3s ease;
   }
 
-  .site-main p a:hover,
-  .site-main.is-home > div > ul > li a:hover {
+  .site-main p a:hover {
     background-size: 100% 1px;
   }
 
-  /* homepage directory: a bare list of links, no heading, no bullets */
-  .site-main.is-home > div > ul {
-    @apply list-none;
+  /* homepage directory: a quiet editorial index. Keep the number, title,
+     and list edge on the same vertical rhythm; interaction is carried by
+     a small arrow and a short accent rule instead of a heavy underline. */
+  .site-main.is-home ul {
+    @apply mb-0 list-none pl-0;
   }
 
-  .site-main.is-home > div > ul > li {
-    @apply mb-2 text-[15px] leading-[1.7] text-body;
+  .site-main.is-home ul > li {
+    @apply relative mb-0 border-b border-transparent py-2 text-[15px] leading-[1.5] text-body;
+    transition:
+      border-color 220ms ease,
+      padding-left 220ms ease;
   }
 
-  .site-main.is-home > div > ul > li::marker {
-    content: "";
+  .site-main.is-home ul > li::before {
+    @apply absolute left-0 top-1/2 font-mono text-[10px] tracking-[0.08em] text-faint;
+    content: counter(list-item, decimal-leading-zero);
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 220ms ease;
   }
 
-  .site-main.is-home > div > ul > li a {
-    @apply text-ink;
+  .site-main.is-home ul > li a {
+    @apply relative inline-flex w-full items-baseline text-ink no-underline;
+    transition:
+      color 220ms ease,
+      transform 220ms ease;
+  }
+
+  .site-main.is-home ul > li a::after {
+    content: "↗";
+    margin-left: auto;
+    padding-left: 1rem;
+    color: var(--color-faint);
+    opacity: 0;
+    transform: translate(-4px, 2px);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease,
+      color 220ms ease;
+  }
+
+  .site-main.is-home ul > li:hover {
+    border-color: var(--color-hairline);
+    padding-left: 2rem;
+  }
+
+  .site-main.is-home ul > li:hover::before {
+    opacity: 1;
+  }
+
+  .site-main.is-home ul > li:hover a {
+    color: var(--color-ink);
+  }
+
+  .site-main.is-home ul > li:hover a::after {
+    color: var(--color-ink);
+    opacity: 1;
+    transform: translate(0, 0);
   }
 
   /* note pages: keep plain list and heading typography */
@@ -175,19 +222,22 @@
 
   /* GitHub-style Markdown treatment for article pages. */
   .site-main.is-article {
-    @apply max-w-[760px] text-[16px] leading-[1.5];
+    @apply w-full max-w-[760px] text-[16px] leading-[1.5];
   }
 
   .site-main.is-article h1 {
-    @apply border-b border-hairline pb-3 text-[32px] leading-[1.25] tracking-[-0.02em] font-semibold mb-6;
+    @apply border-b border-hairline pb-5 text-[clamp(30px,5vw,40px)] leading-[1.16] tracking-[-0.035em] font-semibold mb-8;
+    text-wrap: balance;
   }
 
   .site-main.is-article h2 {
-    @apply mt-6 mb-4 border-b border-hairline pb-2 text-[24px] leading-[1.25] font-semibold;
+    @apply mt-12 mb-5 border-b border-hairline pb-2 text-[24px] leading-[1.25] font-semibold;
+    scroll-margin-top: 1.5rem;
   }
 
   .site-main.is-article h3 {
-    @apply mt-6 mb-4 text-[20px] leading-[1.25] font-semibold;
+    @apply mt-9 mb-3 text-[20px] leading-[1.3] font-semibold;
+    scroll-margin-top: 1.5rem;
   }
 
   .site-main.is-article h4 {
@@ -200,7 +250,12 @@
   }
 
   .site-main.is-article p {
-    @apply mb-4;
+    @apply mb-5;
+    hanging-punctuation: first last;
+  }
+
+  .site-main.is-article > div > p:first-of-type {
+    @apply text-[18px] leading-[1.75] text-ink;
   }
 
   .site-main.is-article a {
@@ -233,7 +288,11 @@
   }
 
   .site-main.is-article blockquote {
-    @apply mb-4 border-l-4 border-hairline pl-4 text-muted;
+    @apply my-7 border-l-2 border-ink bg-[#fafafa] px-5 py-4 text-[17px] leading-[1.7] text-body;
+  }
+
+  .site-main.is-article blockquote p:last-child {
+    @apply mb-0;
   }
 
   .site-main.is-article code {
@@ -241,7 +300,7 @@
   }
 
   .site-main.is-article pre {
-    @apply mb-4 overflow-x-auto rounded-md bg-[#f6f8fa] p-4;
+    @apply my-6 overflow-x-auto rounded-lg border border-hairline bg-[#f6f8fa] p-5 shadow-[0_8px_24px_rgba(17,17,17,0.04)];
   }
 
   /* shiki inlines background-color:#fff on <pre>; keep the gray block */
@@ -260,7 +319,7 @@
   }
 
   .site-main.is-article img {
-    @apply my-6 max-w-full rounded-md border border-hairline;
+    @apply my-8 max-w-full rounded-lg border border-hairline shadow-[0_8px_24px_rgba(17,17,17,0.06)];
   }
 
   .site-main.is-article hr {
@@ -278,7 +337,7 @@
   }
 
   .site-main.is-article th {
-    @apply bg-[#f6f8fa] font-semibold text-ink;
+    @apply sticky top-0 bg-[#f6f8fa] font-semibold text-ink;
   }
 
   .site-main.is-article tr:nth-child(2n) td {

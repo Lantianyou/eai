@@ -4,25 +4,21 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
     "check": "vp check",
     "typecheck": "tsc -p tsconfig.json",
     "images:webp": "node scripts/convert-images-to-webp.mjs",
-    "deploy": "pnpm build && wrangler pages deploy docs/.vuepress/dist"
+    "deploy": "pnpm build && wrangler pages deploy docs/.vitepress/dist"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.4",
-    "@vuepress/bundler-vite": "2.0.0-rc.31",
-    "@vuepress/plugin-markdown-image": "2.0.0-rc.31",
-    "@vuepress/plugin-shiki": "2.0.0-rc.31",
-    "@vuepress/plugin-sitemap": "2.0.0-rc.31",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite-plus": "^1.1.0",
+    "vitepress": "^2.0.0-alpha.12",
     "vue": "^3.5.40",
-    "vuepress": "2.0.0-rc.31",
     "wrangler": "^4.149.0"
   },
   "packageManager": "pnpm@12.10.1"
