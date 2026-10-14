@@ -14,7 +14,7 @@ permalink: /data-layer-tax
 
 Scaling law 开始在机器人领域生效，带来了几年前难以想象的能力。端到端模型直接从传感器输入预测机器人动作，这简化了机器人上的软件，却让从数据采集到训练的一切都变得更加困难。LLM 团队依靠成熟的数据基础设施实现规模化，通过对数据的快速迭代来提升性能。机器人团队却在没有它的情况下试图规模化。
 
-![流水线各阶段（采集、摄取、清洗、增强、筛选、训练、评估），每个阶段都有数据溢出。](/images/data-layer-tax-hero.jpg)
+![流水线各阶段（采集、摄取、清洗、增强、筛选、训练、评估），每个阶段都有数据溢出。](/images/data-layer-tax-hero.webp)
 
 大多数团队从零构建数据工具，因为现有的基础设施并不是为驱动机器人学习的多速率、多模态数据而设计的。在从采集到训练的数据旅程中，常见操作都比它们本该有的样子更难、更慢。这种累积成本——体现在迭代速度、工程注意力和 GPU 利用率上——就是我们所说的**数据层税**。在这场通往史上最大市场的竞赛中，降低这笔税是跑得更快的重大杠杆。
 
@@ -42,19 +42,19 @@ Scaling law 开始在机器人领域生效，带来了几年前难以想象的�
 
 训练大模型时，我们必须以足够快的速度喂饱昂贵的 GPU，以最大化利用率。研究人员通过选择包含哪些数据、如何采样来操控模型的行为。
 
-![不同的数据集以不同权重汇入同一个训练混合集，每个数据集由许多长度不一的 episode 组成。](/images/data-layer-tax-dataset-weights.jpg)
+![不同的数据集以不同权重汇入同一个训练混合集，每个数据集由许多长度不一的 episode 组成。](/images/data-layer-tax-dataset-weights.webp)
 
 研究人员在训练模型时往往想把多个数据集组合在一起。常见的做法是对多个数据集做加权组合，有时甚至按时间步设置采样概率或 loss 的权重。
 
 想想训练一个带动作分块的视觉-语言-动作模型（VLA），比如 [ACT](https://arxiv.org/abs/2304.13705) 或 [pi0.5](https://www.pi.website/blog/pi05)。一个人形机器人模型可能消费来自头部和腕部相机的三路视频流、30 多个关节的位置和速度、夹爪状态，以及一条语言指令。
 
-![NVIDIA GROOT N1 人形机器人基础模型的架构概览。](/images/data-layer-tax-groot.jpg)
+![NVIDIA GROOT N1 人形机器人基础模型的架构概览。](/images/data-layer-tax-groot.webp)
 
 NVIDIA [GROOT N1 模型](https://github.com/NVIDIA/Isaac-GR00T)的架构概览。
 
 batch 中的每个训练样本，都从数据集中某个 episode 的单个时间步开始。对一个基本款 VLA 来说，样本本身由每个视角的相机帧、机器人当前状态和一段未来动作组成——通常是未来 50–100 个时间步。在机器人上录制和训练之间的某个环节，所有这些输入都需要时间对齐，这是一个常见的隐蔽 bug 来源。
 
-![VLA 模型的单个训练样本：在当前时间步，相机、任务、状态和动作列被读作模型输入；一段未来的动作列被读作观测动作，用于与模型预测动作计算训练 loss。](/images/data-layer-tax-vla.jpg)
+![VLA 模型的单个训练样本：在当前时间步，相机、任务、状态和动作列被读作模型输入；一段未来的动作列被读作观测动作，用于与模型预测动作计算训练 loss。](/images/data-layer-tax-vla.webp)
 
 VLA 模型训练的基本样本构造。注意目标动作是从样本起点向前看取得的。
 
@@ -62,7 +62,7 @@ VLA 模型训练的基本样本构造。注意目标动作是从样本起点向�
 
 采样模式取决于架构，而且会继续演进。[Diffusion Policy](https://arxiv.org/abs/2303.04137) 以 2 帧观测为条件，预测未来 16 步。长程任务中的模型往往需要更长的历史，而且采样间隔可能不均匀。像 [DreamZero](https://arxiv.org/abs/2602.15922) 这样的 World Action Model（WAM）消费等间隔的连续帧序列，并联合预测未来的视频和动作。
 
-![一个具有不均匀历史的样本：当前行加上几个以不规则间隔取出的过去行，从数据集中取出并堆叠成喂给 VLA 模型的小型 "History" 张量，而未来的动作列仍被读作观测动作目标。](/images/data-layer-tax-vla-with-history.jpg)
+![一个具有不均匀历史的样本：当前行加上几个以不规则间隔取出的过去行，从数据集中取出并堆叠成喂给 VLA 模型的小型 "History" 张量，而未来的动作列仍被读作观测动作目标。](/images/data-layer-tax-vla-with-history.webp)
 
 输入更长历史的 VLA 模型训练样本构造。
 
@@ -74,7 +74,7 @@ VLA 模型训练的基本样本构造。注意目标动作是从样本起点向�
 
 大多数视频编码器并不独立存储每一帧。它们通过**图像组**（Group of Pictures，GOP）结构来利用时间冗余。一个 GOP 以关键帧开头，关键帧是一幅完整图像。随后的帧是增量帧（delta frame），存储相对于其他帧的变化。增量帧很小，压缩就是这么实现的。
 
-![从 GOP 中间解码一幅图像的例子：解码器需要读取之前的关键帧（I-frame）和通往待解码帧的所有增量帧（P-frame）。](/images/data-layer-tax-gop-iframe.jpg)
+![从 GOP 中间解码一幅图像的例子：解码器需要读取之前的关键帧（I-frame）和通往待解码帧的所有增量帧（P-frame）。](/images/data-layer-tax-gop-iframe.webp)
 
 从 GOP 中间解码一幅图像的例子。本例中，解码器需要读取之前的关键帧（I-frame）和通往待解码帧的所有增量帧（P-frame)。
 
@@ -82,7 +82,7 @@ VLA 模型训练的基本样本构造。注意目标动作是从样本起点向�
 
 关键的权衡是 GOP 大小。GOP 越大压缩越好，GOP 越小随机访问越快。[LeRobot](https://github.com/huggingface/lerobot) 默认 GOP 为 2，每隔一帧就是关键帧，优先保证随机访问，但牺牲了潜在的压缩率。
 
-![考虑视频压缩的基本 VLA 模型训练样本构造。每个标记为 P 或 I 的格子是一个编码后的视频包：增量帧或关键帧。](/images/data-layer-tax-sample-construction-with-gops.jpg)
+![考虑视频压缩的基本 VLA 模型训练样本构造。每个标记为 P 或 I 的格子是一个编码后的视频包：增量帧或关键帧。](/images/data-layer-tax-sample-construction-with-gops.webp)
 
 考虑视频压缩的基本 VLA 模型训练样本构造。图中每个标记为 P 或 I 的格子是一个编码后的视频包，即增量帧或关键帧。
 
@@ -110,7 +110,7 @@ VLA 模型训练的基本样本构造。注意目标动作是从样本起点向�
 
 数据集的构成对性能影响很大：包含哪些数据集、不同任务-机器人组合的权重如何、该强调什么、该弱化什么。Physical Intelligence 的 [pi0](https://arxiv.org/abs/2410.24164) 在自己的遥操作数据、仿真数据和开放数据集的混合上做了预训练，每个任务-机器人组合按幂律加权，压低过度表示的组合的权重。[这篇 CoRL 2024 最佳论文](https://data-scaling-laws.github.io/)表明，在每个任务的演示数量达到基线之后，增加任务多样性远比增加演示数量重要。如何构成混合，可能比拥有多少数据更重要。
 
-![pi0 预训练混合的两张图：左侧按步数统计的数据集大小，右侧是采样权重。](/images/data-layer-tax-pre-training-mix.jpg)
+![pi0 预训练混合的两张图：左侧按步数统计的数据集大小，右侧是采样权重。](/images/data-layer-tax-pre-training-mix.webp)
 
 [pi0 模型](https://www.pi.website/download/pi0.pdf)的预训练混合。右图展示了不同数据集在预训练混合中的权重，左图展示了它们以步数衡量的相对大小。
 
@@ -126,13 +126,13 @@ VLA 模型训练的基本样本构造。注意目标动作是从样本起点向�
 
 随着团队规模化、把目光投向遥操作数据之外，一件讽刺的事情发生了。端到端模型简化了感知栈，却需要如此多的训练数据，以至于团队被迫寻找更便宜、更可扩展的数据来源。
 
-![机器人学习的数据金字塔（来自 [NVIDIA GEAR Group](https://gear-lab.github.io/)）：顶端是真实世界机器人数据，中间是合成数据，宽广的底座是网络数据和人类视频。](/images/data-layer-tax-data-pyramid.jpg)
+![机器人学习的数据金字塔（来自 [NVIDIA GEAR Group](https://gear-lab.github.io/)）：顶端是真实世界机器人数据，中间是合成数据，宽广的底座是网络数据和人类视频。](/images/data-layer-tax-data-pyramid.webp)
 
 机器人学习的数据金字塔。真实机器人数据难以扩展，因此团队把它与其他数据来源结合起来，训练大型行为模型。
 
 像 Sunday Robotics 和 Generalist AI 这样的公司，使用佩戴 [UMI 式夹爪](https://umi-gripper.github.io/)的人类数据采集员，比用真实机器人更快、更便宜地生成演示。要把这些数据变成可训练的东西，需要用 SLAM 从相机画面中提取物体的 3D 位姿，把人类动作重定向到机器人运动学，并验证空间一致性。Generalist AI 报告在这些流水线上使用了 [1 万多个 CPU 核心](https://generalistai.com/blog/nov-04-2025-GEN-0)。复杂性并没有消失，它只是从机器人推理转移到了数据流水线。
 
-![并排两张 UMI 式手持数据采集设备的照片：左侧是 Generalist AI 的夹爪，背景可见 AprilTag；右侧是 Sunday Robotics 的 Skill Capture Glove。](/images/data-layer-tax-grippers.jpg)
+![并排两张 UMI 式手持数据采集设备的照片：左侧是 Generalist AI 的夹爪，背景可见 AprilTag；右侧是 Sunday Robotics 的 Skill Capture Glove。](/images/data-layer-tax-grippers.webp)
 
 用专门设计的手持设备进行数据采集。左：Generalist AI 的夹爪，背景可见 AprilTag。右：Sunday Robotics 的 Skill Capture Glove。
 
@@ -158,7 +158,7 @@ Meta 的 [HOT3D](https://www.projectaria.com/datasets/hot3d/) 数据集提供了
 
 在分析领域，团队花了多年时间为同一数据的不同消费者维护独立的系统。数据湖把所有东西以开放格式便宜地存起来，但缺少支撑可靠查询的结构。数据仓库提供快速、结构化的查询，但要求严格的 schema，并把数据锁定在 ML 工具读不了的专有格式里。于是团队两者都跑，在两者之间做 ETL，还常常为 ML 负载再导出一次——造出多个副本，schema 不同、新鲜度不同，连接它们的流水线脆弱不堪。Lakehouse 架构通过在对象存储的开放文件格式上直接加一个结构化的元数据层（事务、schema 强制执行、索引）解决了这个问题。一份数据，BI、分析和 ML 都能直接访问，不需要独立系统或冗余的 ETL。
 
-![原始 Lakehouse 论文中的图：从两层模型到 Lakehouse 模型的演进。](/images/data-layer-tax-paper.jpg)
+![原始 Lakehouse 论文中的图：从两层模型到 Lakehouse 模型的演进。](/images/data-layer-tax-paper.webp)
 
 原始 [Lakehouse 论文](https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf)中的图，关于从两层模型到 Lakehouse 模型的演进。从左到右：仅仓库、仓库 + 数据湖、Lakehouse。
 

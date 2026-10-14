@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { viteBundler } from "@vuepress/bundler-vite";
 import { sitemapPlugin } from "@vuepress/plugin-sitemap";
+import { markdownImagePlugin } from "@vuepress/plugin-markdown-image";
 import { shikiPlugin } from "@vuepress/plugin-shiki";
 import { defineUserConfig } from "vuepress";
 
@@ -16,6 +17,10 @@ export default defineUserConfig({
     ["meta", { name: "theme-color", content: "#ffffff" }],
   ],
   plugins: [
+    markdownImagePlugin({
+      lazyload: true,
+      size: true,
+    }),
     sitemapPlugin({
       hostname: profile.url,
       excludePaths: ["/404.html"],

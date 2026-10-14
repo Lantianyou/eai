@@ -16,7 +16,7 @@ permalink: /real-moat-is-foundry
 
 对于处在中国的创业公司来说，我认为，过于关注在模型，尤其是闭源模型上来说更多是毒药而非解药。即使我们观测到中国的模型公司训练模型使用的算力效率，数据效率都远远超出美国同行，中国的 Researcher/工程师非常擅长训练模型，但是具身并不是只有模型，而训模型必须要抢算力，创业公司的精力很有限，不光要在产品上和模型公司竞争，还要在算力市场上和模型公司竞争，处于一个腹背受敌的危险境地之下。一个简要的公式就是算力市场价格在每年 3x，OpenAI/Antropic 的收入在 10x，他们会不断得加码购买算力来扩张疆域。
 
-![Frontier Labs 占全球新增数据中心容量的份额（SemiAnalysis）](/images/real-moat-is-foundry-datacenter-capacity.jpg)
+![Frontier Labs 占全球新增数据中心容量的份额（SemiAnalysis）](/images/real-moat-is-foundry-datacenter-capacity.webp)
 
 与其与 frontier labs 面对面竞争，相反，成为他们的供应链我认为是更好的选择。不光是英伟达一样卖铲子，hyperscaler 也就是各个云服务商为 token 的分发提供了关键的销售渠道，甲骨文和 SpaceXSI 也积极得筹建数据中心租赁给模型公司。
 
@@ -26,10 +26,10 @@ permalink: /real-moat-is-foundry
 
 所以我认为，扎根中国的 AI 创业者在思考为模型公司提供商业价值的时候，不应该盲目模仿美国，而是应该发挥最大的本土优势。相比于美国，中国的 IT 市场，软件服务就一直是劣势，连大厂自己都做得灰头土脸。
 
-![阿里巴巴股价年初至今下跌 39%](/images/real-moat-is-foundry-alibaba-stock.png)
+![阿里巴巴股价年初至今下跌 39%](/images/real-moat-is-foundry-alibaba-stock.webp)
 
 但是中国/亚洲的制造业其实相比于美国有巨大的优势，药明康德，工业富联和台积电都是典型的例子。要在中国创业拿到大结果我认为还是要发挥主场优势，比如在工业和制造场景。我认为是合理的，具身智能的最终梦想——生产能制造，修复和迭代自己的机器人。一定会牵扯到非常复杂的供应链管理和整合，机械零件的创新，在工厂落地部署等等，这些是那些硅谷模型公司不擅长不愿意但不得不做的事情。
 
-![Elon Musk 谈中国制造业的规模化能力](/images/real-moat-is-foundry-musk-manufacturing.png)
+![Elon Musk 谈中国制造业的规模化能力](/images/real-moat-is-foundry-musk-manufacturing.webp)
 
 给模型提供真实世界反馈信号 A physical component which provides tools and feedback for model 会

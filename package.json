@@ -8,13 +8,14 @@
     "build": "vuepress build docs",
     "check": "vp check",
     "typecheck": "tsc -p tsconfig.json",
-    "deploy": "pnpm build && wrangler pages deploy docs/.vuepress/dist",
-    "resume:pdf": "node scripts/export-resume.mjs"
+    "images:webp": "node scripts/convert-images-to-webp.mjs",
+    "deploy": "pnpm build && wrangler pages deploy docs/.vuepress/dist"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.4",
     "@vuepress/bundler-vite": "2.0.0-rc.31",
+    "@vuepress/plugin-markdown-image": "2.0.0-rc.31",
     "@vuepress/plugin-shiki": "2.0.0-rc.31",
     "@vuepress/plugin-sitemap": "2.0.0-rc.31",
     "tailwindcss": "^4.3.3",

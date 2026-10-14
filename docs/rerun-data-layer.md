@@ -46,7 +46,7 @@ Rerun 最为人所知的是多模态时序数据的可视化。而在过去一�
 
 ### 数据层必须扛住使用大规模物理数据的那些硬骨头
 
-![架构图：机器人学习工作流（数据采集、摄取与规整、标注与后处理、数据筛选、训练、评估与部署）之下是计算与应用层（可视化、SQL/Dataframe 查询、运行在 Modal/Spark/EC2 上的后处理计算、GPU 训练集群计算），而这一切都由更下面的数据层来服务。](/images/rerun-data-layer-hard-parts.png)
+![架构图：机器人学习工作流（数据采集、摄取与规整、标注与后处理、数据筛选、训练、评估与部署）之下是计算与应用层（可视化、SQL/Dataframe 查询、运行在 Modal/Spark/EC2 上的后处理计算、GPU 训练集群计算），而这一切都由更下面的数据层来服务。](/images/rerun-data-layer-hard-parts.webp)
 
 机器人学习工作流的每个环节，都依赖同样少数几种计算与应用能力：可视化、查询、后处理和训练。底下的数据层必须把它们全部服务好。
 
@@ -68,7 +68,7 @@ Rerun 最为人所知的是多模态时序数据的可视化。而在过去一�
 
 多速率、多模态数据应该被存进 chunk：每个 chunk 持有数据集的一个行子集和列子集。这样一来，比如你可以把一百万个 IMU 样本放进一个 chunk，而把寥寥几个视频包放进另一个 chunk，稀疏性和内存不均衡两个问题就都解决了。
 
-![并排的两种 chunk 形状：左边是又高又窄的"高频小组分 chunk"，装下大量小数值行；右边是又矮又宽的"单一大组分 chunk"，装下一帧视频这样的大负载。](/images/rerun-data-layer-chunks-multi-rate-multimodal.png)
+![并排的两种 chunk 形状：左边是又高又窄的"高频小组分 chunk"，装下大量小数值行；右边是又矮又宽的"单一大组分 chunk"，装下一帧视频这样的大负载。](/images/rerun-data-layer-chunks-multi-rate-multimodal.webp)
 
 两种形状的 chunk：左边的高 chunk 装大量行的小体积高频数据，右边的矮 chunk 装单个大组分比如视频帧。不同的形状让每个 chunk 在磁盘上大小大致相当，而不管底层传感器是什么。
 
@@ -80,7 +80,7 @@ Rerun 最为人所知的是多模态时序数据的可视化。而在过去一�
 
 Rerun 的原生文件格式 .rrd，是 column chunk 抽象在磁盘上的表示。在内部，每个 column chunk 被编码为一个 Apache Arrow record batch，外加描述数据应如何解释的语义元数据。Apache Arrow 是数据科学领域的事实标准，使用 Arrow 意味着我们有一条通往 DataFusion、Pandas 和 Polars 的快速零拷贝通路。
 
-![单个 chunk 的解剖：chunk 头携带 chunk id、entity path 和元数据，之后是 row id、时间列块，以及并排的一个或多个组分列。](/images/rerun-data-layer-chunk-anatomy.png)
+![单个 chunk 的解剖：chunk 头携带 chunk id、entity path 和元数据，之后是 row id、时间列块，以及并排的一个或多个组分列。](/images/rerun-data-layer-chunk-anatomy.webp)
 
 chunk 的内部：一个小头部（chunk id、entity path、元数据），之后是 row id、时间列和若干个组分列。所有数据都是列式的 Apache Arrow 数据。
 
@@ -88,7 +88,7 @@ chunk 的内部：一个小头部（chunk id、entity path、元数据），之�
 
 编码后的 column chunk 被包裹进 protobuf 消息并串联起来，形成一个 .rrd 文件。文件末尾的 footer 指向一个索引，使得无需扫描整个文件就能快速随机访问单个 chunk。
 
-![.rrd 文件格式示意图：顶部是 header，中间是一串 column chunk，之后是一个每个 chunk 一条记录的索引 record batch，最后是指向索引的 footer。](/images/rerun-data-layer-rrd-format.png)
+![.rrd 文件格式示意图：顶部是 header，中间是一串 column chunk，之后是一个每个 chunk 一条记录的索引 record batch，最后是指向索引的 footer。](/images/rerun-data-layer-rrd-format.webp)
 
 一个 .rrd 文件就是一串 column chunk，后跟索引和 footer。索引中每个 chunk 占一行，记录其字节范围、schema 和时间范围，查询因此可以直接跳到所需的 chunk。
 
@@ -108,7 +108,7 @@ chunk 的内部：一个小头部（chunk id、entity path、元数据），之�
 
 为了分析单个信号而扫描数据集里的所有 chunk，即使对很小的数据集也扩展不动。所以要有效使用它们，你需要一个元数据和索引层，能为任何查询找到正确的 chunk。这看起来非常像经典的 data lakehouse 模式。在我们的场景中，单个数据集或 recording 由异构的 chunk 组成，这些 chunk 并不共享相同的 schema。而经典数据处理工具是为处理 schema 统一的表而构建的。因此，面向物理数据的 lakehouse 式索引和元数据层，还需要跟踪这些单独的 schema，以便能够**即时物化出任意数据流的合并 schema**，让经典数据工具可以工作。举个例子：如果你把 IMU 升级成一个会在消息里发布磁场数据的新型号，这一增量与你旧的、不含这个字段的 IMU 是兼容的，不需要为了兼容性重写历史数据。
 
-![架构图：计算与应用层（可视化、SQL/Dataframe 查询、后处理计算、GPU 训练集群计算）把查询送入 Rerun Hub（索引、schema 管理、元数据和缓存层），Rerun Hub 再从庞大的异构 chunk 存储中拣选出特定的 column chunk。](/images/rerun-data-layer-data-layer-architecture.png)
+![架构图：计算与应用层（可视化、SQL/Dataframe 查询、后处理计算、GPU 训练集群计算）把查询送入 Rerun Hub（索引、schema 管理、元数据和缓存层），Rerun Hub 再从庞大的异构 chunk 存储中拣选出特定的 column chunk。](/images/rerun-data-layer-data-layer-architecture.webp)
 
 Rerun Hub 把异构的 chunk 池变成应用层可以当作统一数据集来对待的东西：即时物化合并 schema，只为每个查询拉取所需的 chunk。
 
@@ -122,7 +122,7 @@ column chunk 配上高效的索引，让你只取需要的数据，而不必为�
 
 无论是为了最大化性能还是最小化出站流量成本，你都希望计算在数据附近运行。同时 GPU 算力又很难搞到，许多团队最终不得不在不同地点租用。所有这些因素叠加，意味着你需要能够把存储与负责索引和元数据的服务分离开。
 
-![架构图：顶部是计算与应用层，中间是 Rerun Hub，底层是由 column chunk 构成的对象存储层；虚线箭头表示 Rerun Hub 从对象存储中取出特定 chunk 并向上游流式传输给计算。](/images/rerun-data-layer-hub-compute-application-layer.png)
+![架构图：顶部是计算与应用层，中间是 Rerun Hub，底层是由 column chunk 构成的对象存储层；虚线箭头表示 Rerun Hub 从对象存储中取出特定 chunk 并向上游流式传输给计算。](/images/rerun-data-layer-hub-compute-application-layer.webp)
 
 计算与存储独立扩展：Rerun Hub 只为每个任务从对象存储中直接取它需要的 chunk，因此你可以跨 CPU 或 GPU 扇出，而不用搬动数据。
 
@@ -264,7 +264,7 @@ loader = DataLoader(ds, shuffle=False)
 
 Rerun Hub 是一个 catalog 和存储引擎，与开源 Rerun SDK 相连，让机器人学习数据从采集到训练再到部署的工作变得简单。它充当统一的管理和访问层，驱动从摄取、可视化、分析查询、转换到训练的全部核心数据能力。数据可以存放在任何 S3 兼容的对象存储中，Rerun Hub 高效地居中调解从对象存储到 Rerun SDK 的直接选择性流式传输——用于你的训练任务或大规模并行后处理任务。这个集中化的 Hub 还通过让"用代码或在 viewer 中交互式地构造可分享的数据链接"变得容易，简化了协作和自动化审查。
 
-![完整的 Rerun Hub 技术栈：最上是机器人学习生命周期（数据采集、摄取与规整、标注与后处理、数据筛选、训练、评估与部署），其下是计算与应用层（可视化、SQL/dataframe 查询、后处理计算、GPU 训练集群计算），中间是 Rerun Hub，底层是对象存储层中的 .rrd 文件与 column chunk。](/images/rerun-data-layer-rerun-hub-full-stack.png)
+![完整的 Rerun Hub 技术栈：最上是机器人学习生命周期（数据采集、摄取与规整、标注与后处理、数据筛选、训练、评估与部署），其下是计算与应用层（可视化、SQL/dataframe 查询、后处理计算、GPU 训练集群计算），中间是 Rerun Hub，底层是对象存储层中的 .rrd 文件与 column chunk。](/images/rerun-data-layer-rerun-hub-full-stack.webp)
 
 一张图看懂 Rerun Hub：机器人学习生命周期的每个环节、每种计算能力，都对着同一个 catalog 和访问层工作，其背后是对象存储中的 .rrd 文件。
 

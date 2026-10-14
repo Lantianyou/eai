@@ -18,7 +18,7 @@ egoscale 使用了 Sharpa 手，任务主要围绕卷衬衫、夹子夹东西、
 
 上边这份工作是在英伟达 Cosmos 世界模型上微调的。Nature Well 在数据量显著扩张（100 万小时 ego 人类数据）后有不同的结论。Nature Well 尤其突出的一个贡献在于这个模型着重于 20 DoF 灵巧手而非夹爪，完成了折叠材料、写书法，和在任务中更换工具。Nature Well 使用的是 ROKAE AR5 搭配 Wuji 手，主打了一些常见的家庭任务。因为灵巧手的模型比较少，可能 Nature Well 是第一家。
 
-![Nature Well：20 DoF 灵巧手完成折叠材料、写书法与更换工具](/images/human-data-contribution-nature-well.png)
+![Nature Well：20 DoF 灵巧手完成折叠材料、写书法与更换工具](/images/human-data-contribution-nature-well.webp)
 
 看到 Nature Well 的工作中对 Infra 有许多披露，读起来还是感到一些遗憾和心酸。我也建立过差一两个数量级的 infra，麻雀虽小但是各个节点都包括，比如 PB 级的 Lakehouse、语义标注和数据流水线等等，尤其是里边关于延迟敏感的物理模型在实时推理需要联合设计的思想。
 

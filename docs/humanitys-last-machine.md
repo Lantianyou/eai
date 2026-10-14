@@ -300,7 +300,7 @@ _**核心要点：谐波减速器（strain-wave reducers，又称 harmonic drive
 
 ![][image13]
 
-([source](https://www.smdgearbox.com/assets/images/banner/harmonic.jpg))
+([source](https://www.smdgearbox.com/assets/images/banner/harmonic.webp))
 
 这种设计能在紧凑的结构中实现极高的精度和接近零的背隙（backlash），但其代价是效率较低、对冲击载荷敏感，以及材料反复弯曲导致随时间推移产生的磨损。
 
@@ -967,7 +967,7 @@ NVIDIA 生态凭借原始性能、成熟的工具链以及生态锁定，主导�
 
 缺点是生态隔离。特斯拉的方案只有在数百万台量级的巨大规模下才合理。对于规模较小的机器人公司而言，定制芯片的开发成本令人望而却步。
 ![][image51]
-([source](https://news.accelerationrobotics.com/content/images/2022/10/template.009.png))
+([source](https://news.accelerationrobotics.com/content/images/2022/10/template.009.webp))
 
 ## **关键评估维度**
 
@@ -1147,7 +1147,7 @@ _**要点：机器人通过两类传感器感知世界：1）感知外部环境�
 
 ![][image59]
 
-([source](https://www.globalgilson.com/content/images/thumbs/0029272_flir-ex-pro-series-thermal-imaging-cameras.jpeg))
+([source](https://www.globalgilson.com/content/images/thumbs/0029272_flir-ex-pro-series-thermal-imaging-cameras.webp))
 
 ## **内部传感器**
 
@@ -1166,7 +1166,7 @@ _**要点：机器人通过两类传感器感知世界：1）感知外部环境�
 它是一个实心的金属部件，安装在机器人与外部世界之间，通常位于腕部或工具安装处。当机器人按压某物或某物反推回来时，这个金属部件会产生轻微的弯曲。弯曲量极小（通常只有几微米）。金属内部的微型传感器测量这种弯曲并将其转换为力的数值。
 
 ![][image61]
-([source](https://www.photonics.com/images/Web/Articles/2018/3/19/Robotic_Torque2.jpg))
+([source](https://www.photonics.com/images/Web/Articles/2018/3/19/Robotic_Torque2.webp))
 
 由于金属的弯曲方式随负载方向不同而不同，传感器能够区分竖直下压、侧向拉动或扭转。这使机器人不仅能理解接触发生了，还能理解接触是如何发生的。
 
@@ -1255,7 +1255,7 @@ _公司：Sony（索尼）、Sunny Optical（舜宇光学）_
 
 ![][image66]
 
-（[source](https://www.mdpi.com/sensors/sensors-22-04765/article_deploy/html/images/sensors-22-04765-g001.png)）
+（[source](https://www.mdpi.com/sensors/sensors-22-04765/article_deploy/html/images/sensors-22-04765-g001.webp)）
 
 由于这些传感器只是薄薄的材料层，它们可以被切割成几乎任何形状。这使它们很容易被嵌入夹爪、机器人皮肤，或用于采集人类施力数据的可穿戴设备（如手套）中。
 
@@ -1273,7 +1273,7 @@ _公司：TE Connectivity、PI（Physik Instrumente）、TDK Electronics 和 Hon
 
 ![][image67]
 
-（[source](https://pubs.acs.org/cms/10.1021/acsaelm.1c01274/asset/images/large/el1c01274_0006.jpeg)）
+（[source](https://pubs.acs.org/cms/10.1021/acsaelm.1c01274/asset/images/large/el1c01274_0006.webp)）
 
 即使是最轻微的接触也会产生可测量的信号，这使得电容式传感器在人机交互中显得反应灵敏、"有生命力"。但这种敏感度也是其主要缺点。由于信号依赖于电场，它很容易被电磁噪声、静电或接地不良所干扰。让手机插上廉价充电器时屏幕乱跳的那种干扰，同样会扰乱机器人的电容皮肤。
 

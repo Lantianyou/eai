@@ -42,7 +42,7 @@ data pipeline 分为如下几个部分：
 
 具身的数据是不可能脱离视觉存在的，视觉的数据打标模型有很多开源的工作， SOTA 是 StableHands, 从 WiLor 和 HaWor 传承下来的工作。视觉处理管线上对于丢手多手，腕部精度，视频编解码效率等等都有优化空间。
 
-![视觉标注与处理管线示意](/images/infra-for-eai-annotation.jpg)
+![视觉标注与处理管线示意](/images/infra-for-eai-annotation.webp)
 
 - Ray 可以帮助开发者自动调度各种 AI/ML 工作负载背后的硬件，快速集成各种算法和高效利用已有的算力资源，自动处理扩缩容，和更自然简单得表达各个算子的业务逻辑结合。典型的 case 就是把采集软件输出的原始时序数据打包成 LeRobot 数据集。
 - Prefect 可以提供整个的 Workflow 调度，来维持整个 DAG 计算任务的缓存与缓存命中，重试逻辑等等
@@ -51,7 +51,7 @@ data pipeline 分为如下几个部分：
 
 有一个中心化的具身智能数据库的好处就在于，就是时刻都有一个 single source of truth 来去查找和筛选数据， 通过声明式得管理数据的各种状态，只需要按结果而非过程得理解，使用调度数据。数据库的原子是 `.rrd` 文件，可以高效得存储时间对齐的，跨模态的数据。比如将高频低码流的 IMU 数据和视频数据以 chunk 得形式存储在一起，可以支持 PB 级的 scale 和 byte 级的流式读取。
 
-![具身智能数据库视图示意](/images/infra-for-eai-database.jpg)
+![具身智能数据库视图示意](/images/infra-for-eai-database.webp)
 
 - Dataset View：一组 Rerun recording，每个 recording 通常是一个 `.rrd` 文件，对应一个 segment，每个 segment 代表一次语义完整的任务。
 - Table View ：单独选取出某些模态的内容，以 Arrow 的形式返回语言无关，高效分析 ready 的数据。

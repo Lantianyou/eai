@@ -178,6 +178,9 @@ importers:
       '@vuepress/bundler-vite':
         specifier: 2.0.0-rc.31
         version: 2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2)
+      '@vuepress/plugin-markdown-image':
+        specifier: 2.0.0-rc.31
+        version: 2.0.0-rc.31(markdown-it@14.3.2)(typescript@7.0.2)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(esbuild@0.28.2)(rolldown@1.2.13)(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0))(vue@3.5.43(typescript@7.0.2)))
       '@vuepress/plugin-shiki':
         specifier: 2.0.0-rc.31
         version: 2.0.0-rc.31(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(esbuild@0.28.2)(rolldown@1.2.13)(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0))(vue@3.5.43(typescript@7.0.2)))
@@ -668,6 +671,42 @@ packages:
   '@mdit-vue/types@3.0.2':
     resolution: {integrity: sha512-00aAZ0F0NLik6I6Yba2emGbHLxv+QYrPH00qQ5dFKXlAo1Ll2RHDXwY7nN2WAfrx2pP+WrvSRFTGFCNGdzBDHw==}
     engines: {node: '>=20.0.0'}
+
+  '@mdit/plugin-figure@0.12.0':
+    resolution: {integrity: sha512-3nfcGI+uM0f6AqHZrEr8kSMBI6T2+fKKQXtCbvWQqQ+P3iGgf34Ay2eAtuMDcDGqyfNuR6e8aLoOeY2QWuEynA==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-img-lazyload@0.12.0':
+    resolution: {integrity: sha512-6R42ieXzwkB5BKKZi+ZefqeP/fBG5qo7Sqtl72ewSVqEQ30bgxpk6nkrPI2orRob4tb6z0F/c+R8h6PW5MkTOw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-img-mark@0.12.0':
+    resolution: {integrity: sha512-HkIUwlTg/xPsBi4PG+5dsMnsb7wdiJzELSCEUfdAJTg55nksonHfyV2pFpr87MML4nuZlZK9JHt+Bm2BBDSVSw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-img-size@0.12.0':
+    resolution: {integrity: sha512-fCcF5gc+ba6gQ5ebrKuI8bK/gFbj8mbeN45FHmBsFDFsfTHa0Xij2v8iok0nP8YEIVj71y8XYojsqCWs6avong==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
 
   '@oxc-project/runtime@0.153.0':
     resolution: {integrity: sha512-rXJvtlsVG4xJNq64hiaUTIatE7jbBgpa6l4QgmEa2jLgT3ULH9scUBkpsC9N1DfmqixLEyT6DuK6OSXozziIlw==}
@@ -1617,6 +1656,11 @@ packages:
 
   '@vuepress/markdown@2.0.0-rc.31':
     resolution: {integrity: sha512-W4UdVwYob3sZ794BFd53dolhXVOma0JzN15k6CwmmhOy/3wWuIZ8pV3YQsxxyAQJ8ZxQWGZ4Wf5u/w7G/1/IkQ==}
+
+  '@vuepress/plugin-markdown-image@2.0.0-rc.31':
+    resolution: {integrity: sha512-1Kt8gkiaF9nNvMEBF315gNk/olWGuzhNi8tvabWihC3kZZGrlpFKmLDWV4cJu5BVoxU4KqtUkNMCEs2rwgkQ6A==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.12
 
   '@vuepress/plugin-shiki@2.0.0-rc.31':
     resolution: {integrity: sha512-aiqsr3yf8Flt6TczpQ0d0qKMFqpeWanuDAjOgEIkmOT+gjA+NTSefpbiwx+NIKs6nRsOtIxZmzNGoq6u2mEoUg==}
@@ -3240,6 +3284,30 @@ snapshots:
 
   '@mdit-vue/types@3.0.2': {}
 
+  '@mdit/plugin-figure@0.12.0(markdown-it@14.3.2)':
+    dependencies:
+      '@types/markdown-it': 14.2.0
+    optionalDependencies:
+      markdown-it: 14.3.2
+
+  '@mdit/plugin-img-lazyload@0.12.0(markdown-it@14.3.2)':
+    dependencies:
+      '@types/markdown-it': 14.2.0
+    optionalDependencies:
+      markdown-it: 14.3.2
+
+  '@mdit/plugin-img-mark@0.12.0(markdown-it@14.3.2)':
+    dependencies:
+      '@types/markdown-it': 14.2.0
+    optionalDependencies:
+      markdown-it: 14.3.2
+
+  '@mdit/plugin-img-size@0.12.0(markdown-it@14.3.2)':
+    dependencies:
+      '@types/markdown-it': 14.2.0
+    optionalDependencies:
+      markdown-it: 14.3.2
+
   '@oxc-project/runtime@0.153.0': {}
 
   '@oxc-project/types@0.153.0': {}
@@ -4060,6 +4128,19 @@ snapshots:
       mdurl: 2.1.0
     transitivePeerDependencies:
       - supports-color
+
+  '@vuepress/plugin-markdown-image@2.0.0-rc.31(markdown-it@14.3.2)(typescript@7.0.2)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(esbuild@0.28.2)(rolldown@1.2.13)(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0))(vue@3.5.43(typescript@7.0.2)))':
+    dependencies:
+      '@mdit/plugin-figure': 0.12.0(markdown-it@14.3.2)
+      '@mdit/plugin-img-lazyload': 0.12.0(markdown-it@14.3.2)
+      '@mdit/plugin-img-mark': 0.12.0(markdown-it@14.3.2)
+      '@mdit/plugin-img-size': 0.12.0(markdown-it@14.3.2)
+      '@types/markdown-it': 14.2.0
+      '@vuepress/helper': 2.0.0-rc.31(typescript@7.0.2)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(esbuild@0.28.2)(rolldown@1.2.13)(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0))(vue@3.5.43(typescript@7.0.2)))
+      vuepress: 2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(esbuild@0.28.2)(rolldown@1.2.13)(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0))(vue@3.5.43(typescript@7.0.2))
+    transitivePeerDependencies:
+      - markdown-it
+      - typescript
 
   '@vuepress/plugin-shiki@2.0.0-rc.31(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.4)(@vue/compiler-sfc@3.5.43)(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(esbuild@0.28.2)(rolldown@1.2.13)(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0))(vue@3.5.43(typescript@7.0.2)))':
     dependencies:
