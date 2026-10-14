@@ -191,13 +191,13 @@ mcap_stream = mcap_stream.lenses(
 
 占用栅格（occupancy grid），即 3D 中的 2D 地图，对移动机器人很重要，也是 Rerun 中被重度请求已久的功能。0.32 因此新增了 [GridMap](/docs/reference/types/archetypes/grid_map) archetype 和可视化器，并内置支持对应的 ROS 2 消息。
 
-<video src="/images/rerun-data-layer-gridmap.mp4" controls muted playsinline loop style="max-width: 100%"></video>
+<video src="https://static.rerun.io/5c0621191425727fb8ec08c21c5f3d74964168fc_gridmap.mp4" controls muted playsinline loop style="max-width: 100%"></video>
 
 新的 GridMap archetype 在 3D 场景中渲染 2D 占用栅格，并内置支持对应的 ROS 2 消息。
 
 另一个常见请求是可视化随时间变化的状态。0.32 带来了新的实验性 [State Timeline View](/docs/reference/types/views/state_timeline_view)。如果你一直在等 Rerun 的这个视图，我们很期待你对这个视图还想看到什么功能的反馈。
 
-<video src="/images/rerun-data-layer-state-timeline.mp4" controls muted playsinline loop style="max-width: 100%"></video>
+<video src="https://static.rerun.io/876a5bc91dd42fff81bc596177fae5a3c387e5fa_state-timeline.mp4" controls muted playsinline loop style="max-width: 100%"></video>
 
 新的实验性 State Timeline 视图：类别型状态轨在共享时间轴上被渲染为彩色分段。
 
@@ -217,7 +217,7 @@ with rr.server.Server(datasets={"sample_dataset": directory_of_rrds}) as srv:
 
 0.32 发布了我们的（实验性）数据集审查工具的第一个版本。它能让你同时快速浏览大量 recording，去做异常排查、建立对数据的直觉。你还可以给 recording 打标记，因此也可以当一个简单的标注工具来用。该视图使用普通的 Rerun blueprint 来配置。
 
-<video src="/images/rerun-data-layer-dataset-review.mp4" controls muted playsinline loop style="max-width: 100%"></video>
+<video src="https://static.rerun.io/b4c70d700524ef1b9f64d9014f46ce7eacee4ccd_dataset-review.mp4" controls muted playsinline loop style="max-width: 100%"></video>
 
 实验性数据集审查工具：同时浏览大量 recording，给值得深入看的打标，全部用一个普通 Rerun blueprint 配置。
 
