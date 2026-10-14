@@ -118,6 +118,29 @@
     content: none;
   }
 
+  /* Article figures: Markdown emits an image as a paragraph followed by
+     another paragraph containing its caption. Treat that pair as a figure
+     so the image does not inherit two competing vp-doc paragraph margins. */
+  .site-main.is-article p:has(> img) {
+    margin: 2.5rem 0 0;
+  }
+
+  .site-main.is-article p:has(> img) > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 0.5rem;
+  }
+
+  .site-main.is-article p:has(> img) + p {
+    margin: 0.75rem 0 2.5rem;
+    color: var(--vp-c-text-2);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
   .site-main strong {
     @apply font-semibold text-ink;
   }

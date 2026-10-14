@@ -3,6 +3,7 @@ docs/.vuepress/dist/
 docs/.vuepress/.temp/
 docs/.vuepress/.cache/
 docs/.vitepress/dist/
+docs/.vitepress/cache/
 docs/.vitepress/.temp/
 docs/.vitepress/.cache/
 docs/resume.md
