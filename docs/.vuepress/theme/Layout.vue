@@ -16,7 +16,10 @@ const dates = computed(() => {
 </script>
 
 <template>
-  <div class="flex min-h-dvh justify-center p-[clamp(20px,4vw,48px)]">
+  <div
+    class="flex min-h-dvh justify-center p-[clamp(20px,4vw,48px)]"
+    :class="{ 'resume-layout': page.path === '/resume/' }"
+  >
     <div class="flex w-full max-w-[600px] flex-col">
       <main
         class="site-main"
@@ -26,7 +29,7 @@ const dates = computed(() => {
         }"
       >
         <Content />
-        <p v-if="page.path !== '/'" class="article-meta">
+        <p v-if="page.path !== '/' && page.path !== '/resume/'" class="article-meta">
           <RouteLink to="/" rel="author">{{ profile.name }}</RouteLink>
           <template v-if="dates.published">
             · 发布于 <time :datetime="dates.published">{{ dates.published.slice(0, 10) }}</time>
@@ -38,6 +41,7 @@ const dates = computed(() => {
       </main>
 
       <nav
+        v-if="page.path !== '/resume/'"
         class="rise-in flex gap-6 pt-5 text-xs tracking-[0.04em] text-muted [transition-delay:0.4s]"
         aria-label="Elsewhere"
       >

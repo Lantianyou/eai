@@ -60,6 +60,7 @@ head:
 # 兰天游
 
 - [API for eai](/api-for-eai)
+- [人类示范数据对具身智能有用吗](/human-data-contribution)
 - [具身智能基础设施：infra for EAI](/infra-for-eai)
 - [Foundary](/real-moat-is-foundry)
 - [机器人学习的新数据层（译文）](/rerun-data-layer)

@@ -2,6 +2,10 @@ node_modules/
 docs/.vuepress/dist/
 docs/.vuepress/.temp/
 docs/.vuepress/.cache/
+docs/resume.md
 .wrangler/
 .DS_Store
 *.local
+
+# Private resume source and generated exports
+docs/.vuepress/public/resume/
