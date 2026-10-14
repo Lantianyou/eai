@@ -1,0 +1,9 @@
+[files]
+extend-exclude = ["docs/.vuepress/dist"]
+
+[default.extend-words]
+# 真实公司/产品名
+Commun = "Commun"   # Commun. ACM — 学术引用标准缩写
+Dota = "Dota"       # OpenAI Dota 2 1v1 bot
+Nd = "Nd"           # NdFeB 钕铁硼，驼峰词被拆开所致
+Robotis = "Robotis" # 韩国机器人公司 ROBOTIS（Dynamixel 舵机）

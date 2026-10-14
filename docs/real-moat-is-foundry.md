@@ -1,12 +1,12 @@
 ---
-title: Foundary
+title: Foundry
 description: 具身智能热潮中的模型溢价与 frontier labs 的火力覆盖，中国创业者不应在闭源模型上腹背受敌，而应发挥制造业主场优势，成为模型公司的铸造厂。
 date: "2026-10-14"
 updated: "2026-10-14"
 permalink: /real-moat-is-foundry
 ---
 
-# Foundary
+# Foundry
 
 中国市场上具身公司的热潮相当比例是模型溢价，市场认为具身模型和大模型是显著不同的两种技术，在 ChatGPT/Claude moment for 具身尚未出现的前夜，提前下注具身赛道有机会投出下一个 OpenAI 。
 
