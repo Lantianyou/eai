@@ -13,3 +13,5 @@ docs/resume.md
 
 # Private resume source and generated exports
 docs/.vuepress/public/resume/
+
+private/
