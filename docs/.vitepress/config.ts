@@ -8,6 +8,9 @@ export default defineConfig({
   title: profile.englishName,
   description: profile.description,
   cleanUrls: true,
+  // Keep the private resume available to local development, but exclude it
+  // from production builds used by the deploy script.
+  srcExclude: process.env.PUBLIC_BUILD ? ["resume.md"] : [],
   ignoreDeadLinks: true,
   head: [
     ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],

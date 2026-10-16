@@ -9,7 +9,7 @@
     "check": "vp check",
     "typecheck": "tsc -p tsconfig.json",
     "images:webp": "node scripts/convert-images-to-webp.mjs",
-    "deploy": "pnpm build && wrangler pages deploy docs/.vitepress/dist"
+    "deploy": "PUBLIC_BUILD=1 pnpm build && wrangler pages deploy docs/.vitepress/dist"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
